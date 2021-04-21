@@ -1,1 +1,2 @@
-# ESC_UFU
+# ECS_Simulator
+Simulador para o curso de Elementos de Sistemas Computacionais (*Elements of Computing Systems*) da FEELT/UFU/Brasil, programado para Python 3.6+. Inspirado pelo curso http://nand2tetris.org.
