@@ -1,4 +1,4 @@
-from ecs_simulator import *
+from esc_simulator import *
 
 Library.author("Igor Peretta")
 
