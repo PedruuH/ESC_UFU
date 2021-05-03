@@ -72,6 +72,7 @@ for i in range(16):
     Register.set_as_input(i, 'load', 'load')
     Register.set_as_output(i, 'out', f'out{i}')
     Register.set_as_clock(i, 'clock')
+Register.save()
 Register.test_set(
     [
         [0, 1]*8 + [1],
@@ -85,3 +86,37 @@ Register.test_set(
     ],
     has_clock=True
 )
+
+Ram8 = Circuit('Ram8', lbs('in', 16) + lbs('addr', 3) + ['load'], lbs('out', 16))
+Ram8.add_components(
+    (Library.load('Register'), 8),
+    Library.load('Dmux8way'),
+    Library.load('Mux8way16'),
+)
+alpha = lbs('@', 8)
+for i in range(8):
+    for j in range(16):
+        Ram8.set_as_input(i, f'in{j}', f'in{j}')
+        Ram8.connect(i, f'out{j}', 9, f'{alpha[i]}{j}')
+    Ram8.connect(8, alpha[i], i, 'load')
+    Ram8.set_as_clock(i, 'clock')
+Ram8.set_as_input(8, 'in', 'load')
+for i in range(16):
+    Ram8.set_as_output(9, f'out{i}', f'out{i}')
+for i in range(3):
+    Ram8.set_as_input(8, f'sel{i}', f'addr{i}')
+    Ram8.set_as_input(9, f'sel{i}', f'addr{i}')
+Ram8.save()
+Ram8.test_set(
+    [   
+        [1, 0]*8 + [0, 1, 0] + [1],
+        [0, 1]*8 + [0, 1, 1] + [1],
+        [1]*16 + [1, 0, 0] + [1],
+        [0]*16 + [0, 1, 0] + [0],
+        [0]*16 + [0, 1, 1] + [0],
+        [0]*16 + [1, 0, 0] + [0],
+    ], 
+    label_display_order= ['load'] + lbs('addr', 3) + lbs('in', 16),
+    compact=True, 
+    has_clock=True
+    )
