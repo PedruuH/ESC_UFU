@@ -2,12 +2,6 @@ from ecs_simulator import *
 
 Library.author("Pedro Henrique R M Santos")
 
-Not = Gate('Not', 1, ['in'], ['out'])
-Not.set_as_vcc(0, 'C')
-Not.set_as_gnd(0, 'E')
-Not.set_as_input(0, 'B', 'in')
-Not.set_as_output(0, 'C', 'out')
-
 Dff = Circuit("Dff", 'in', 'out')
 Dff.add_components(
     Library.load('Not'),
