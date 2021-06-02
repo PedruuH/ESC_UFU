@@ -37,7 +37,7 @@ for fn in filenames:
     # Segunda "passada": fazer a efetiva montagem
     parser.inputs = backup_inputs
     bin_exec = []
-    for _ in range(parser.nr_inputs):
+    for _ in range(1,parser.nr_inputs):
         parser.advance()
         if parser.commandType() == parser.CommandTypes['C']:
             bin_exec.append('111' + code.comp(parser.comp()) + \

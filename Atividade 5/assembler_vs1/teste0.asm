@@ -1,4 +1,3 @@
-// Esse programa não faz sentido, apenas para testes de parsers
 @0
 D=M
 // comentário
