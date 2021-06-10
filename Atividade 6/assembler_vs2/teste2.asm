@@ -4,7 +4,7 @@
     D = M      // carrega em D o conteúdo de M['R0']
     @R1
     D = D + M  // soma D com M['R1'] e carrega em D
-    @ sum
+    @sum
     M = D      // escreve em M['sum'] o valor da soma
 // verifica se a soma é 42
     @ 42
