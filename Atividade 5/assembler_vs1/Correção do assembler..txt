@@ -1,0 +1,12 @@
+for _ in range(1,parser.nr_inputs):
+        parser.advance()
+
+o nr_inputs é o total de inputs/instuções.
+Assim, devemos usar o range contando a partir de 1. Sem especificar isso ele conta a partir de Zero, logo, repete a ultima instrução.
+
+Podemos fazer então:
+for _ in range(1,parser.nr_inputs):
+
+ou
+
+for _ in range(parser.nr_inputs-1):
